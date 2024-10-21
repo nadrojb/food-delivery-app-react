@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -17,9 +16,10 @@ function App() {
     <>
       {restaurants.map((restaurants, index) => {
         return (
-          <button key={index}>{restaurants.restaurant}</button>
+          <button key={index}>{restaurants.foodItems[0].foodName}</button>
         )
-      })}
+      })
+      }
     </>
   )
 }
