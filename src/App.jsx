@@ -3,6 +3,20 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+fetch('https://raw.githubusercontent.com/iO-Academy/food-delivery-api/refs/heads/main/public/food.json')
+.then((response) => response.json())
+.then((data) => {
+    let restaurantNames = [];
+
+    data.forEach(obj => {
+    restaurantNames.push(obj.restaurant)
+    })
+
+    restaurantNames.forEach(restaurantName => {
+      console.log(`<Button name={${restaurantName}} />`)
+    });
+})
+
 function App() {
   const [count, setCount] = useState(0)
 
