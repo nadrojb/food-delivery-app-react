@@ -4,15 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import BtnComponent from './Components/BtnComponent'
 
-
-
-
 function App() {
-
   return (
     <>
-    <BtnComponent restaurantName={McDonalds}/>
-    
+    <BtnComponent restaurantName={'Mcdonalds'}/>
     </>
   )
 }
