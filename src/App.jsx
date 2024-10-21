@@ -17,7 +17,7 @@ function App() {
     <>
       {restaurants.map((restaurants, index) => {
         return (
-          <p key={index}>{restaurants.restaurant}</p>
+          <button key={index}>{restaurants.restaurant}</button>
         )
       })}
     </>
