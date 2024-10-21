@@ -13,7 +13,7 @@ fetch('https://raw.githubusercontent.com/iO-Academy/food-delivery-api/refs/heads
     })
 
     restaurantNames.forEach(restaurantName => {
-      console.log(`<Button name={${restaurantName}} />`)
+      console.log(`<Button restaurantName={${restaurantName}} />`)
     });
 })
 
