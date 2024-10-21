@@ -1,5 +1,19 @@
-function App() {
-  return <p class="font-mono">Hello!</p>;
-}
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import BtnComponent from './Components/BtnComponent'
 
+
+
+
+function App() {
+
+  return (
+    <>
+    <BtnComponent restaurantName={McDonalds}/>
+    
+    </>
+  )
+}
 export default App;
