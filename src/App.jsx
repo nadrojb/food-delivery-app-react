@@ -1,27 +1,24 @@
-import { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
-  const [restaurants, setRestaurantNames] = useState([]);
+  const [restaurantNames, setRestaurantNames] = useState([]);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/iO-Academy/food-delivery-api/refs/heads/main/public/food.json')
+    fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
       .then((response) => response.json())
       .then((data) => {
-        setRestaurantNames(data)// array of objects each containing 'restaurant' and 'foodItems'
-      })
-  }, [])
+        setRestaurantNames(data);
+      });
+  }, []);
 
   return (
     <>
-      {restaurants.map((restaurants, index) => {
-        return (
-          <button key={index}>{restaurants.foodItems[0].foodName}</button>
-        )
-      })
-      }
+      {restaurantNames.map((restaurantName) => {
+        return <button key={restaurantName.id}>{restaurantName.name}</button>;
+      })}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
