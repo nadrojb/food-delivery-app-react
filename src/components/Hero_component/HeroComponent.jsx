@@ -1,17 +1,12 @@
-function HeroComponent(RestaurantName) {
-  if (RestaurantName == "") {
+function HeroComponent({RestaurantName}) {
     return (
       <>
-        <h1 className="">Food.Delivered</h1>
+      <div>
+        <h1 className="border border-solid border-black  ">Food.Delivered</h1>
         <p>Order you favourite food from local restaurants, right to your door.</p>
+        </div>
       </>
     );
-  } else {
-    return(
-        <>
-        <h1 className="">{RestaurantName}</h1>
-    
-      </>
-    )
-  }
-}
+  } 
+
+export default HeroComponent
