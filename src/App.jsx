@@ -5,7 +5,6 @@ function App() {
   return (
     <>
       <p class="font-mono">Hello!</p>
-      <HeroComponent />
     </>
   );
 }
