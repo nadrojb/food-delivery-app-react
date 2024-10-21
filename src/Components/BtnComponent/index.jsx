@@ -1,5 +1,5 @@
 function BtnComponent({restaurantName}) {
-    return <button className="bg-white py-6 border-cyan-600 border-2 rounded-sm w-80 m-2 text-3xl font-medium">{restaurantName}</button>
+    return <button className="bg-white py-5  border-cyan-600 border-2 rounded-sm text-3xl font-medium max-w-sm">{restaurantName}</button>
 }
 
 export default BtnComponent
