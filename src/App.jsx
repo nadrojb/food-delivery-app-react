@@ -26,7 +26,7 @@ function App() {
           <HeroText />
         </div>
       </section>
-      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {restaurantNames.map((restaurantName) => {
           return (
             <RestaurantButton
