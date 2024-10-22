@@ -15,6 +15,9 @@ function App() {
       });
   }, []);
 
+
+
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:text-left">
@@ -33,7 +36,7 @@ function App() {
                      
           );
         })}
-        <ItemInfo/>
+        <ItemInfo itemName="sideItem" itemValue="560"/>
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
         <p>© Copyright iO Academy 2024</p>
