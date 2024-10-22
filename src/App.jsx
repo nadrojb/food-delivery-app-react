@@ -3,38 +3,9 @@ import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
 
 function App() {
-  const [restaurantNames, setRestaurantNames] = useState([]);
-  const [foodItems, setFoodItems] = useState([]);
-
-  function pageDecider(page) {
-    if(page == 'home'){
-      
-      info.map((name, index) => {
-        return (
-          <RestaurantButton
-            restaurantName={info.name} 
-            id={info.id}
-            key={info.id}
-          ></RestaurantButton>
-        );
-      })
-    
-    
-    foodItems.map((foodItem, index) => {
-      return (
-        <MenuCard
-          foodName={foodItem.foodName}
-          foodType={foodItem.foodType}
-          calories={foodItem.calories}
-          price={foodItem.price}
-          key={index}
-        ></MenuCard>
-      );
-    })
-  }
-}
 
   useEffect(() => {
+    
     fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
       .then((response) => response.json())
       .then((data) => {
@@ -53,6 +24,45 @@ function App() {
         });
     }, []);
   }
+
+  const [info, setInfo] = useState([]);
+  const [page, setPage] = useState('home');
+  
+  
+  function handleChange() {
+
+  }
+
+  useEffect(() => {
+    if(page == 'home'){
+      
+      info.map((name, index) => {
+        return (
+          <RestaurantButton
+            restaurantName={info.name} 
+            id={info.id}
+            key={info.id}
+          ></RestaurantButton>
+        );
+      })
+    
+    
+      info.map((foodItem, index) => {
+      return (
+        <MenuCard
+          foodName={foodItem.foodName}
+          foodType={foodItem.foodType}
+          calories={foodItem.calories}
+          price={foodItem.price}
+          key={index}
+        ></MenuCard>
+      );
+    })
+  }
+})
+
+
+  
 
   onRestaurantClick(1);
 
