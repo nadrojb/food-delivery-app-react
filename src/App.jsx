@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import BtnComponent from "./Components/BtnComponent";
+import HeroComponent from "./components/Hero_component/HeroComponent";
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
           <span className="text-cyan-500">Food</span>Delivery
         </p>
       </header>
-      <section className="w-full mt-4 md:px-4 h-40">
-        <div className="bg-[url(/public/burgers.jpg)] w-full h-40 bg-cover bg-center"></div>
+      <section className="w-full mt-4 md:px-4 h-60">
+        <div className="bg-[url(/public/burgers.jpg)] w-full h-full bg-cover bg-center content-center"><HeroComponent/></div>
       </section>
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <BtnComponent restaurantName={"Mcdonalds"} />
