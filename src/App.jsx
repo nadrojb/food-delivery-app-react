@@ -4,7 +4,35 @@ import Hero from "./Components/Hero/index.jsx";
 
 function App() {
   const [restaurantNames, setRestaurantNames] = useState([]);
+  const [foodItems, setFoodItems] = useState([]);
 
+  function pageDecider(page) {
+    if(page == 'home'){
+      
+      info.map((name, index) => {
+        return (
+          <RestaurantButton
+            restaurantName={info.name} 
+            id={info.id}
+            key={info.id}
+          ></RestaurantButton>
+        );
+      })
+    
+    
+    foodItems.map((foodItem, index) => {
+      return (
+        <MenuCard
+          foodName={foodItem.foodName}
+          foodType={foodItem.foodType}
+          calories={foodItem.calories}
+          price={foodItem.price}
+          key={index}
+        ></MenuCard>
+      );
+    })
+  }
+}
 
   useEffect(() => {
     fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
@@ -14,6 +42,20 @@ function App() {
       });
   }, []);
 
+  function onRestaurantClick(clicked_id) {
+    useEffect(() => {
+      fetch(
+        `https://food-delivery-api.dev.io-academy.uk/restaurants/${clicked_id}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setFoodItems(data);
+        });
+    }, []);
+  }
+
+  onRestaurantClick(1);
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:text-left">
@@ -21,16 +63,10 @@ function App() {
           <span className="text-cyan-500">Food</span>Delivery
         </p>
       </header>
-      <Hero/>
+      <Hero />
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {restaurantNames.map((restaurantName) => {
-          return (
-            <RestaurantButton
-              restaurantName={restaurantName.name}
-              key={restaurantName.id}
-            ></RestaurantButton>
-          );
-        })}
+        
+        
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
         <p>© Copyright iO Academy 2024</p>
