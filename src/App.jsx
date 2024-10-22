@@ -5,6 +5,7 @@ import HeroText from "./Components/HeroText/index.jsx";
 function App() {
   const [restaurantNames, setRestaurantNames] = useState([]);
 
+
   useEffect(() => {
     fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
       .then((response) => response.json())
