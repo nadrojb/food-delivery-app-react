@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
+import ItemInfo from "./Components/ItemInfo/index.jsx";
 
 function App() {
   const [restaurantNames, setRestaurantNames] = useState([]);
@@ -29,8 +30,10 @@ function App() {
               restaurantName={restaurantName.name}
               key={restaurantName.id}
             ></RestaurantButton>
+                     
           );
         })}
+        <ItemInfo/>
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
         <p>© Copyright iO Academy 2024</p>
