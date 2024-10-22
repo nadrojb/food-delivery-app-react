@@ -1,63 +1,68 @@
 import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
+import MenuCard from "./Components/MenuCard/index.jsx";
 
 function App() {
   const [info, setInfo] = useState([]);
-  const [page, setPage] = useState("home"); // do i need to do this?
+  const [page, setPage] = useState("home");
 
-  function checkID(id) {
-    // let id = e.target.id;
-    console.log("step1")
-    setPage(id); // why am i doing this?
-    console.log(page)
-    getIDData(id);
+  function checkID(e) {
+    let id = e.target.id
+    setPage(id)
   }
 
-  function getIDData(id) {
+  useEffect(() => {
+    let pageName = page
 
-    if (id == "home") {
+    if (pageName == 'home') {
 
-      useEffect(() => {
-        fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
-          .then((response) => response.json())
-          .then((data) => {
-            setInfo(data);
-
-            info.map((restaurant) => {
-              return (
-                <RestaurantButton
-                  restaurantName={restaurant.name}
-                  id={restaurant.id}
-                  key={restaurant.id}
-                  onclick={checkID}
-                ></RestaurantButton>
-              );
-            });
-          });
-      }, []);
+      fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
+      .then((response) => response.json())
+      .then((data) => {
+        setInfo(data);
+      });
 
     } else {
 
-      useEffect(() => {
-        fetch(`https://food-delivery-api.dev.io-academy.uk/restaurants/${id}`)
-          .then((response) => response.json())
-          .then((data) => {
-            setInfo(data);
+      fetch(`https://food-delivery-api.dev.io-academy.uk/restaurants/${page}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setInfo(data);
+      });
 
-            info.map((foodItem, index) => {
-              return (
-                <MenuCard
-                  foodName={foodItem.foodName}
-                  foodType={foodItem.foodType}
-                  calories={foodItem.calories}
-                  price={foodItem.price}
-                  key={index}
-                ></MenuCard>
-              );
-            });
-          });
-      }, []);
+    }
+    console.log(`this is ${page}`)
+  }, [page])
+
+  function printThings() {
+    let pageName = page
+    console.log(info)
+    if(pageName == 'home') {
+
+      info.map((restaurant) => {
+        return (
+          <RestaurantButton
+            restaurantName={restaurant.name}
+            id={restaurant.id}
+            key={restaurant.id}
+            onclick={checkID}
+          ></RestaurantButton>
+        );
+      });
+
+    } else {
+      info.map((foodItem, index) => {
+        return (
+          <MenuCard
+            foodName={foodItem.foodName}
+            foodType={foodItem.foodType}
+            calories={foodItem.calories}
+            price={foodItem.price}
+            key={index}
+          ></MenuCard>
+        );
+      });
     }
   }
 
@@ -70,9 +75,11 @@ function App() {
       </header>
       <Hero />
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <RestaurantButton clickHandler={checkID} restaurantName={'restaurant'} id={1}/>
+        <RestaurantButton clickHandler={checkID} restaurantName={'home'} id={'home'}/>
 
         {
-          checkID(1)
+          printThings()
         }
 
       </section>

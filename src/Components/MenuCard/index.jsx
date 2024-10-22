@@ -8,6 +8,6 @@ function MenuCard ({foodName, foodItem, calories, price}){
             <p>{calories}</p>
         </div>
     )
-
-
 }
+
+export default MenuCard
