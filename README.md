@@ -1,8 +1,9 @@
-# React + Vite
+# FoodDelivery App FST BlueLobsters 2024
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FoodDelivery app project set by iO Academy, written in React, using tailwind for styling.
 
-Currently, two official plugins are available:
+The task was to create a food delivery app using the provided designs. This project was made up of six different stories, each implementing new features and functionality. We decided to go with a mobile first approach, and set out by creating a component tree diagram and drawing a wireframe for the design we were given. We were also provided the API to fetch the relevant data to populate our components with.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Each story was broken down into smaller tasks, which we allocated across the group in pairs. For story 1 we built the main structure of the app, and created the components from the tree diagram we created. We then fetched the data from the API and used this to populate the relevant components, in order to display a button with each restaurant name from the API.
+
+Image provided by Unsplash
