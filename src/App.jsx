@@ -15,8 +15,9 @@ function App() {
       <section className="w-full mt-4 md:px-4 h-40">
         <div className="bg-[url(/public/burgers.jpg)] w-full h-40 bg-cover bg-center"></div>
       </section>
-
-      <section className="mt-4 w-full px-4 grid items-center justify- grid-cols-1 lg:grid-cols-4 gap-4">
+      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <BtnComponent restaurantName={"Mcdonalds"} />
+        <BtnComponent restaurantName={"Mcdonalds"} />
         <BtnComponent restaurantName={"Mcdonalds"} />
         <BtnComponent restaurantName={"Mcdonalds"} />
         <BtnComponent restaurantName={"Mcdonalds"} />
