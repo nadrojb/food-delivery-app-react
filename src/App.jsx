@@ -36,7 +36,7 @@ function App() {
         })}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
-        <p>© Copyright iO Academy 2022</p>
+        <p>© Copyright iO Academy 2024</p>
       </footer>
     </>
   );
