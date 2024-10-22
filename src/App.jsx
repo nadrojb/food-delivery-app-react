@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -6,6 +6,17 @@ import BtnComponent from "./Components/BtnComponent";
 import HeroComponent from "./components/Hero_component/HeroComponent";
 
 function App() {
+
+  const [restaurantNames, setRestaurantNames] = useState([]);
+
+  useEffect(() => {
+    fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
+      .then((response) => response.json())
+      .then((data) => {
+        setRestaurantNames(data);
+      });
+  }, []);
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:text-left">
@@ -17,16 +28,11 @@ function App() {
         <div className="bg-[url(/public/burgers.jpg)] w-full h-full bg-cover bg-center content-center"><HeroComponent/></div>
       </section>
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
-        <BtnComponent restaurantName={"Mcdonalds"} />
+
+        {restaurantNames.map((restaurantName) => {
+          return <BtnComponent restaurantName={restaurantName.name} key={restaurantName.id}></BtnComponent>;
+        })}
+
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
         <p>© Copyright iO Academy 2022</p>
