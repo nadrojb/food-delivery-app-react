@@ -3,68 +3,63 @@ import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
 
 function App() {
-
-  useEffect(() => {
-    
-    fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
-      .then((response) => response.json())
-      .then((data) => {
-        setRestaurantNames(data);
-      });
-  }, []);
-
-  function onRestaurantClick(clicked_id) {
-    useEffect(() => {
-      fetch(
-        `https://food-delivery-api.dev.io-academy.uk/restaurants/${clicked_id}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setFoodItems(data);
-        });
-    }, []);
-  }
-
   const [info, setInfo] = useState([]);
-  const [page, setPage] = useState('home');
-  
-  
-  function handleChange() {
+  const [page, setPage] = useState("home"); // do i need to do this?
 
+  function checkID(id) {
+    // let id = e.target.id;
+    console.log("step1")
+    setPage(id); // why am i doing this?
+    console.log(page)
+    getIDData(id);
   }
 
-  useEffect(() => {
-    if(page == 'home'){
-      
-      info.map((name, index) => {
-        return (
-          <RestaurantButton
-            restaurantName={info.name} 
-            id={info.id}
-            key={info.id}
-          ></RestaurantButton>
-        );
-      })
-    
-    
-      info.map((foodItem, index) => {
-      return (
-        <MenuCard
-          foodName={foodItem.foodName}
-          foodType={foodItem.foodType}
-          calories={foodItem.calories}
-          price={foodItem.price}
-          key={index}
-        ></MenuCard>
-      );
-    })
+  function getIDData(id) {
+
+    if (id == "home") {
+
+      useEffect(() => {
+        fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
+          .then((response) => response.json())
+          .then((data) => {
+            setInfo(data);
+
+            info.map((restaurant) => {
+              return (
+                <RestaurantButton
+                  restaurantName={restaurant.name}
+                  id={restaurant.id}
+                  key={restaurant.id}
+                  onclick={checkID}
+                ></RestaurantButton>
+              );
+            });
+          });
+      }, []);
+
+    } else {
+
+      useEffect(() => {
+        fetch(`https://food-delivery-api.dev.io-academy.uk/restaurants/${id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setInfo(data);
+
+            info.map((foodItem, index) => {
+              return (
+                <MenuCard
+                  foodName={foodItem.foodName}
+                  foodType={foodItem.foodType}
+                  calories={foodItem.calories}
+                  price={foodItem.price}
+                  key={index}
+                ></MenuCard>
+              );
+            });
+          });
+      }, []);
+    }
   }
-})
-
-
-  
-
-  onRestaurantClick(1);
 
   return (
     <>
@@ -75,8 +70,11 @@ function App() {
       </header>
       <Hero />
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        
-        
+
+        {
+          checkID(1)
+        }
+
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
         <p>© Copyright iO Academy 2024</p>
