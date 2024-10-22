@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import HeroText from "./Components/HeroText/index.jsx";
+import MenuItems from "./Components/MenuItems/index.jsx";
 
 function App() {
   const [restaurantNames, setRestaurantNames] = useState([]);
@@ -26,6 +27,7 @@ function App() {
         </div>
       </section>
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <MenuItems />
         {restaurantNames.map((restaurantName) => {
           return (
             <RestaurantButton
