@@ -4,15 +4,15 @@ import Hero from "./Components/Hero/index.jsx";
 import MenuCard from "./Components/MenuCard/index.jsx";
 
 function App() {
-  const [info, setInfo] = useState([]);
-  const [currentId, setCurrentId] = useState("");
+  const [restaurantInfo, setRestaurantInfo] = useState([]);
+  const [currentId, setCurrentId] = useState(0);
 
   useEffect(() => {
-    if (currentId === "home") {
+    if (!currentId) {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
         .then((response) => response.json())
         .then((data) => {
-          setInfo(data);
+          setRestaurantInfo(data);
         });
     } else {
       fetch(
@@ -20,14 +20,14 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setInfo(data.foodItems);
+          setRestaurantInfo(data.foodItems);
         });
     }
   }, [currentId]);
 
   function renderContent() {
-    if (currentId === "home") {
-      return info.map((restaurant) => (
+    if (!currentId) {
+      return restaurantInfo.map((restaurant) => (
         <RestaurantButton
           key={restaurant.id}
           restaurantName={restaurant.name}
@@ -36,7 +36,7 @@ function App() {
         />
       ));
     } else {
-      return info.map((foodItem, index) => (
+      return restaurantInfo.map((foodItem, index) => (
         <MenuCard
           key={index}
           foodName={foodItem.foodName}
