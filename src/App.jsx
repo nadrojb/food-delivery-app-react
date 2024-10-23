@@ -26,6 +26,13 @@ function App() {
     }
   }, [currentId]);
 
+  let xlMediaCol;
+  if (!currentId){
+  xlMediaCol = '';
+  } else {
+  xlMediaCol = "xl:grid-cols-6";
+  }
+  
   function renderContent() {
     if (!currentId) {
       return restaurantInfo.map((restaurant) => (
@@ -49,9 +56,6 @@ function App() {
     }
   }
 
-
-
-
   return (
     <>
       <header className="p-4 text-center shadow-lg md:text-left">
@@ -60,7 +64,7 @@ function App() {
         </p>
       </header>
       <Hero />
-      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
+      <section className={`mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}>
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
