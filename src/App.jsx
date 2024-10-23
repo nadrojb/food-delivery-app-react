@@ -54,7 +54,12 @@ function App() {
 
   function renderReturnButton() {
     return currentId ? (
-      <ReturnButton returnClickHandler={setCurrentId} />
+      <ReturnButton
+        returnClickHandler={() => {
+          setCurrentId(0);
+          setCurrentName("");
+        }}
+      />
     ) : null;
   }
 
@@ -73,11 +78,7 @@ function App() {
         </p>
         {renderReturnButton()}
       </header>
-          {!currentId ? (
-            <Hero currentId={currentId} heroText={"Food. Delivered."} />
-          ) : (
-            <Hero currentId={currentId} heroText={currentName} />
-          )}
+      <Hero text={currentName} />
 
       <section
         className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}
