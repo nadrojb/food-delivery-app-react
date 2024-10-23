@@ -9,9 +9,6 @@ function App() {
   const [currentId, setCurrentId] = useState(0);
   const [currentName, setCurrentName] = useState("");
   
-  let xlMediaColumn;
-  if (currentId) { xlMediaColumn = "xl:grid-cols-6"};
-
   useEffect(() => {
     if (!currentId) {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
@@ -68,7 +65,7 @@ function App() {
       return <Hero currentId={currentId} heroText={currentName} />;
     }
   }
-  
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:flex md:justify-between">
@@ -78,7 +75,7 @@ function App() {
         {renderReturnButton()}
       </header>
       {renderRestaurantName()}
-      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaColumn} gap-8`}>
+      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${currentId && 'xl:grid-cols-6'} gap-8`}>
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
