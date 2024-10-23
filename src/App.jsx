@@ -29,6 +29,13 @@ function App() {
     }
   }, [currentId]);
 
+  let xlMediaCol;
+  if (!currentId){
+  xlMediaCol = '';
+  } else {
+  xlMediaCol = "xl:grid-cols-6";
+  }
+  
   function renderContent() {
     if (!currentId) {
       return restaurantInfo.map((restaurant) => (
