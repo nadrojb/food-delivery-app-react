@@ -7,6 +7,7 @@ import MenuItems from "./Components/MenuItems/index.jsx";
 function App() {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [currentId, setCurrentId] = useState(0);
+  const [currentName, setCurrentName] = useState("");
 
   useEffect(() => {
     if (!currentId) {
@@ -22,6 +23,7 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setRestaurantInfo(data.foodItems);
+          setCurrentName(data.restaurant);
         });
     }
   }, [currentId]);
@@ -49,8 +51,13 @@ function App() {
     }
   }
 
-
-
+  function renderRestaurantName() {
+    if (!currentId) {
+      return <Hero heroText={"Food. Delivered."} />;
+    } else {
+      return <Hero heroText={currentName} />;
+    }
+  }
 
   return (
     <>
@@ -59,7 +66,7 @@ function App() {
           <span className="text-cyan-500">Food</span>Delivery
         </p>
       </header>
-      <Hero restaurantName={restaurantInfo.name}/>
+      {renderRestaurantName()}
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {renderContent()}
       </section>
