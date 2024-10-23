@@ -4,9 +4,9 @@ function MenuItems({ foodName, foodType, calories, price, side }) {
   return (
     <div
       id="border"
-      className="border border-solid border-black w-full p-5 shadow-xl rounded h-40"
+      className="border border-solid border-black w-full p-5 shadow-xl rounded"
     >
-      <h3 id="itemName" className="font-bold text-lg">
+      <h3 id="itemName" className="font-bold text-md">
         {foodName}
       </h3>
       <div id="itemInfo" className="flex flex-wrap pt-2 gap-1">
