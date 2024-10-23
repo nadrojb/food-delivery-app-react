@@ -50,14 +50,19 @@ function App() {
     }
   }
 
+  function renderReturnButton() {
+    return currentId ? (
+      <ReturnButton returnClickHandler={setCurrentId} />
+    ) : null;
+  }
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:flex md:justify-between">
         <p>
           <span className="text-cyan-500">Food</span>Delivery <br />
-          {console.log(RestaurantButton)}
         </p>
-        {currentId ? <ReturnButton returnClickHandler={setCurrentId} /> : null}
+        {renderReturnButton()}
       </header>
       <Hero restaurantName={restaurantInfo.name} />
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
