@@ -60,7 +60,7 @@ function App() {
         </p>
       </header>
       <Hero />
-      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
