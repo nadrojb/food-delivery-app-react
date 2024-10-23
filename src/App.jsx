@@ -46,7 +46,7 @@ function App() {
         foodType={foodItem.foodType}
         calories={foodItem.calories}
         side={foodItem.sideItem}
-        price={foodItem.price}
+        price={Number(foodItem.price).toFixed(2)}
         />
       ));
     }
