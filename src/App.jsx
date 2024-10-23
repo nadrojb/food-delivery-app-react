@@ -23,6 +23,7 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setRestaurantInfo(data.foodItems);
+          console.log(data.foodItems);
         });
     }
   }, [currentId]);
@@ -44,6 +45,7 @@ function App() {
           foodName={foodItem.foodName}
           foodType={foodItem.foodType}
           calories={foodItem.calories}
+          side={foodItem.sideItem}
           price={foodItem.price}
         />
       ));
