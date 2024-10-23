@@ -53,9 +53,9 @@ function App() {
 
   function renderRestaurantName() {
     if (!currentId) {
-      return <Hero heroText={"Food. Delivered."} />;
+      return <Hero currentId={currentId} heroText={"Food. Delivered."} />;
     } else {
-      return <Hero heroText={currentName} />;
+      return <Hero currentId={currentId} heroText={currentName} />;
     }
   }
 
