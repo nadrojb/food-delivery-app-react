@@ -8,6 +8,7 @@ import ReturnButton from "./Components/ReturnButton/index.jsx";
 function App() {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [currentId, setCurrentId] = useState(0);
+  const [currentName, setCurrentName] = useState("");
 
   useEffect(() => {
     if (!currentId) {
@@ -23,7 +24,7 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setRestaurantInfo(data.foodItems);
-          console.log(data.foodItems);
+          setCurrentName(data.restaurant);
         });
     }
   }, [currentId]);
@@ -57,6 +58,13 @@ function App() {
       <ReturnButton returnClickHandler={setCurrentId} />
     ) : null;
   }
+  function renderRestaurantName() {
+    if (!currentId) {
+      return <Hero currentId={currentId} heroText={"Food. Delivered."} />;
+    } else {
+      return <Hero currentId={currentId} heroText={currentName} />;
+    }
+  }
 
   return (
     <>
@@ -66,7 +74,8 @@ function App() {
         </p>
         {renderReturnButton()}
       </header>
-      <Hero restaurantName={restaurantInfo.name} />
+
+      {renderRestaurantName()}
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {renderContent()}
       </section>
