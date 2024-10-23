@@ -2,7 +2,6 @@ import ItemInfo from "../ItemInfo";
 
 function MenuItems({ foodName, foodType, calories, price, side }) {
  
-
   return (
     <div
       id="border"

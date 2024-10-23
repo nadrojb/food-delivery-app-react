@@ -19,7 +19,7 @@ if (itemName == "calories"){
 
   return (
     <div className={`${backgroundColour} rounded px-2 text-xs`}>
-      <p className={`${textColour} text-xs font-semibold `}>
+      <p className={`${textColour} text-xs font-semibold`}>
         {textContent}
       </p>
     </div>

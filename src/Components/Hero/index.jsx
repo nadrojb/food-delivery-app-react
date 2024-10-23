@@ -1,4 +1,4 @@
-function Hero({ restaurantName, heroText, currentId }) {
+function Hero({ heroText, currentId }) {
   return (
     <section className="w-full mt-4 md:px-4 h-60">
       <div className="bg-[url(/burgers.jpg)] w-full h-full bg-cover bg-center content-center">
