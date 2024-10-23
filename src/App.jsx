@@ -5,36 +5,34 @@ import MenuCard from "./Components/MenuCard/index.jsx";
 
 function App() {
   const [info, setInfo] = useState([]);
-  const [page, setPage] = useState("home");
-
-  function checkID(id) {
-    setPage(id);
-  }
+  const [currentId, setCurrentId] = useState("");
 
   useEffect(() => {
-    if (page === "home") {
+    if (currentId === "home") {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
         .then((response) => response.json())
         .then((data) => {
           setInfo(data);
         });
     } else {
-      fetch(`https://food-delivery-api.dev.io-academy.uk/restaurants/${page}`)
+      fetch(
+        `https://food-delivery-api.dev.io-academy.uk/restaurants/${currentId}`
+      )
         .then((response) => response.json())
         .then((data) => {
           setInfo(data.foodItems);
         });
     }
-  }, [page]);
+  }, [currentId]);
 
   function renderContent() {
-    if (page === "home") {
+    if (currentId === "home") {
       return info.map((restaurant) => (
         <RestaurantButton
           key={restaurant.id}
           restaurantName={restaurant.name}
           id={restaurant.id}
-          clickHandler={checkID}
+          clickHandler={setCurrentId}
         />
       ));
     } else {
