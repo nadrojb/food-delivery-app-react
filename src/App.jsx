@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import HeroText from "./Components/HeroText/index.jsx";
 import MenuItems from "./Components/MenuItems/index.jsx";
+import ReturnButton from "./Components/ReturnButton/index.jsx";
 
 function App() {
   const [restaurantNames, setRestaurantNames] = useState([]);
@@ -19,6 +20,7 @@ function App() {
       <header className="p-4 text-center shadow-lg md:text-left">
         <p>
           <span className="text-cyan-500">Food</span>Delivery
+          <ReturnButton/>
         </p>
       </header>
       <section className="w-full mt-4 md:px-4 h-60">
