@@ -59,7 +59,7 @@ function App() {
           <span className="text-cyan-500">Food</span>Delivery
         </p>
       </header>
-      <Hero />
+      <Hero restaurantName={restaurantInfo.name}/>
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {renderContent()}
       </section>
