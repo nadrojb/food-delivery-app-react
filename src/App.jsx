@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
 import MenuItems from "./Components/MenuItems/index.jsx";
-import ReturnButton from "./Components/ReturnButton/index.jsx";
 
 function App() {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [currentId, setCurrentId] = useState(0);
   const [currentName, setCurrentName] = useState("");
-  
+
   let xlMediaColumn;
-  if (currentId) { xlMediaColumn = "xl:grid-cols-6"};
+  if (currentId) {
+    xlMediaColumn = "xl:grid-cols-6";
+  }
 
   useEffect(() => {
     if (!currentId) {
@@ -33,31 +34,42 @@ function App() {
 
   function renderContent() {
     if (!currentId) {
-      return restaurantInfo.map((restaurant) => (
-        <RestaurantButton
-        key={restaurant.id}
-        restaurantName={restaurant.name}
-        id={restaurant.id}
-        clickHandler={setCurrentId}
-        />
-      ));
+      return restaurantInfo.map((restaurant) => {
+        return (
+          <RestaurantButton
+            key={restaurant.id}
+            restaurantName={restaurant.name}
+            setCurrentId={() => {
+              setCurrentId(restaurant.id);
+            }}
+          />
+        );
+      });
     } else {
-      return restaurantInfo.map((foodItem, index) => (
-        <MenuItems
-        key={index}
-        foodName={foodItem.foodName}
-        foodType={foodItem.foodType}
-        calories={foodItem.calories}
-        side={foodItem.sideItem}
-        price={Number(foodItem.price).toFixed(2)}
-        />
-      ));
+      return restaurantInfo.map((foodItem, index) => {
+        return (
+          <MenuItems
+            key={index}
+            foodName={foodItem.foodName}
+            foodType={foodItem.foodType}
+            calories={foodItem.calories}
+            side={foodItem.sideItem}
+            price={Number(foodItem.price).toFixed(2)}
+          />
+        );
+      });
     }
   }
-  
+
   function renderReturnButton() {
     return currentId ? (
-      <ReturnButton returnClickHandler={setCurrentId} />
+      <button
+        onClick={() => setCurrentId(0)}
+        className="text-blue-500 font-bold"
+      >
+        {" "}
+        &lt;&lt; Change Restaurant
+      </button>
     ) : null;
   }
 
@@ -68,7 +80,7 @@ function App() {
       return <Hero currentId={currentId} heroText={currentName} />;
     }
   }
-  
+
   return (
     <>
       <header className="p-4 text-center shadow-lg md:flex md:justify-between">
@@ -78,7 +90,9 @@ function App() {
         {renderReturnButton()}
       </header>
       {renderRestaurantName()}
-      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaColumn} gap-8`}>
+      <section
+        className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaColumn} gap-8`}
+      >
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
