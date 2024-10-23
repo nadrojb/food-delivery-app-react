@@ -32,44 +32,37 @@ function App() {
     if (!currentId) {
       return restaurantInfo.map((restaurant) => (
         <RestaurantButton
-        key={restaurant.id}
-        restaurantName={restaurant.name}
-        id={restaurant.id}
-        clickHandler={setCurrentId}
+          key={restaurant.id}
+          restaurantName={restaurant.name}
+          id={restaurant.id}
+          clickHandler={setCurrentId}
         />
       ));
     } else {
       return restaurantInfo.map((foodItem, index) => (
         <MenuItems
-        key={index}
-        foodName={foodItem.foodName}
-        foodType={foodItem.foodType}
-        calories={foodItem.calories}
-        side={foodItem.sideItem}
-        price={Number(foodItem.price).toFixed(2)}
+          key={index}
+          foodName={foodItem.foodName}
+          foodType={foodItem.foodType}
+          calories={foodItem.calories}
+          side={foodItem.sideItem}
+          price={Number(foodItem.price).toFixed(2)}
         />
       ));
     }
   }
-  
+
   function renderReturnButton() {
     return currentId ? (
       <ReturnButton returnClickHandler={setCurrentId} />
     ) : null;
   }
-  function renderRestaurantName() {
-    if (!currentId) {
-      return <Hero currentId={currentId} heroText={"Food. Delivered."} />;
-    } else {
-      return <Hero currentId={currentId} heroText={currentName} />;
-    }
-  }
-  
+
   let xlMediaCol;
-  if (!currentId){
-  xlMediaCol = '';
+  if (!currentId) {
+    xlMediaCol = "";
   } else {
-  xlMediaCol = "xl:grid-cols-6";
+    xlMediaCol = "xl:grid-cols-6";
   }
 
   return (
@@ -80,8 +73,15 @@ function App() {
         </p>
         {renderReturnButton()}
       </header>
-      {renderRestaurantName()}
-      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}>
+          {!currentId ? (
+            <Hero currentId={currentId} heroText={"Food. Delivered."} />
+          ) : (
+            <Hero currentId={currentId} heroText={currentName} />
+          )}
+
+      <section
+        className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}
+      >
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
