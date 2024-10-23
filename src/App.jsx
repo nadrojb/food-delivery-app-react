@@ -84,7 +84,7 @@ function App() {
       </header>
 
       {renderRestaurantName()}
-      <section className={`mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}>
+      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}>
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
