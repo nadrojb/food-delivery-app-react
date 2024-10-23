@@ -1,6 +1,9 @@
 import ItemInfo from "../ItemInfo";
 
 function MenuItems({ foodName, foodType, calories, price, side }) {
+ 
+  price = price.toFixed(2);
+
   return (
     <div
       id="border"
