@@ -22,6 +22,7 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           setRestaurantInfo(data.foodItems);
+          console.log(data.foodItems);
         });
     }
   }, [currentId]);
@@ -43,14 +44,12 @@ function App() {
           foodName={foodItem.foodName}
           foodType={foodItem.foodType}
           calories={foodItem.calories}
+          side={foodItem.sideItem}
           price={foodItem.price}
         />
       ));
     }
   }
-
-
-
 
   return (
     <>
@@ -59,7 +58,7 @@ function App() {
           <span className="text-cyan-500">Food</span>Delivery
         </p>
       </header>
-      <Hero restaurantName={restaurantInfo.name}/>
+      <Hero restaurantName={restaurantInfo.name} />
       <section className="mt-4 w-full px-4 grid items-center justify-items-center grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {renderContent()}
       </section>
