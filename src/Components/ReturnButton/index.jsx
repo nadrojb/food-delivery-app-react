@@ -1,9 +1,8 @@
 
-function ReturnButton() {
+function ReturnButton({returnClickHandler}) {
     return (
-    <>
-        <button className="text-blue-500 font-bold" > &lt;&lt;  Change Restaurant</button>
-    </>
+        <button onClick={() => returnClickHandler(0)}
+        className="text-blue-500 font-bold" > &lt;&lt;  Change Restaurant</button> 
     )
 }
 
