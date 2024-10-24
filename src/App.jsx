@@ -61,7 +61,6 @@ function App() {
             }}
             className="text-blue-500 font-bold"
           >
-            {" "}
             &lt;&lt; Change Restaurant{" "}
           </button>
         ) : null}
