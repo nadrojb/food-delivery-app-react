@@ -4,16 +4,17 @@ import Hero from "./Components/Hero/index.jsx";
 import MenuItems from "./Components/MenuItems/index.jsx";
 
 function App() {
-  const [restaurantInfo, setRestaurantInfo] = useState([]);
+  const [restaurantMenuItems, setRestaurantMenuItems] = useState([]);
   const [currentId, setCurrentId] = useState(0);
-  const [currentName, setCurrentName] = useState("");
+  const [restaurants, setRestaurants] = useState([]);
+  const [restaurantName, setRestaurantName] = useState("");
 
   useEffect(() => {
     if (!currentId) {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
         .then((response) => response.json())
         .then((data) => {
-          setRestaurantInfo(data);
+          setRestaurants(data);
         });
     } else {
       fetch(
@@ -21,15 +22,15 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setRestaurantInfo(data.foodItems);
-          setCurrentName(data.restaurant);
+          setRestaurantMenuItems(data.foodItems);
+          setRestaurantName(data.restaurant);
         });
     }
   }, [currentId]);
 
   function renderContent() {
     if (!currentId) {
-      return restaurantInfo.map((restaurant) => {
+      return restaurants.map((restaurant) => {
         return (
           <RestaurantButton
             key={restaurant.id}
@@ -41,26 +42,9 @@ function App() {
         );
       });
     } else {
-      return restaurantInfo.map((foodItem, index) => {
-        return (
-          <MenuItems
-            key={index}
-            foodName={foodItem.foodName}
-            foodType={foodItem.foodType}
-            calories={foodItem.calories}
-            side={foodItem.sideItem}
-            price={Number(foodItem.price).toFixed(2)}
-          />
-        );
+      return restaurantMenuItems?.map((foodItem, index) => {
+        return <MenuItems key={index} foodItem={foodItem} />;
       });
-    }
-  }
-
-  function renderRestaurantName() {
-    if (!currentId) {
-      return <Hero currentId={currentId} heroText={"Food. Delivered."} />;
-    } else {
-      return <Hero currentId={currentId} heroText={currentName} />;
     }
   }
 
@@ -70,17 +54,8 @@ function App() {
         <p>
           <span className="text-cyan-500">Food</span>Delivery
         </p>
-        {currentId ? (
-          <button
-            onClick={() => setCurrentId(0)}
-            className="text-blue-500 font-bold"
-          >
-            {" "}
-            &lt;&lt; Change Restaurant{" "}
-          </button>
-        ) : null}
       </header>
-      {renderRestaurantName()}
+      <Hero text={restaurantName} />
       <section
         className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${
           currentId && "xl:grid-cols-6"
