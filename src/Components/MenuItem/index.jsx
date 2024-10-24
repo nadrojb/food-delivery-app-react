@@ -1,8 +1,6 @@
 import ItemInfo from "../ItemInfo";
 
-function MenuItems({ foodItem }) {
- 
-
+function MenuItem({ foodItem }) {
   return (
     <div
       id="border"
@@ -12,9 +10,15 @@ function MenuItems({ foodItem }) {
         {foodItem.foodName}
       </h3>
       <div id="itemInfo" className="flex flex-wrap pt-2 gap-1">
-        {foodItem.calories && <ItemInfo itemName="calories" itemValue={foodItem.calories} />}
-        {foodItem.foodType && <ItemInfo itemName="foodType" itemValue={foodItem.foodType} />}
-        {foodItem.sideItem && <ItemInfo itemName="sideItem" itemValue={foodItem.sideItem} />}
+        {foodItem.calories && (
+          <ItemInfo itemName="calories" itemValue={foodItem.calories} />
+        )}
+        {foodItem.foodType && (
+          <ItemInfo itemName="foodType" itemValue={foodItem.foodType} />
+        )}
+        {foodItem.sideItem && (
+          <ItemInfo itemName="sideItem" itemValue={foodItem.sideItem} />
+        )}
       </div>
       <div
         id="priceInfo"
@@ -31,4 +35,4 @@ function MenuItems({ foodItem }) {
   );
 }
 
-export default MenuItems;
+export default MenuItem;

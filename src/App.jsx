@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
-import MenuItems from "./Components/MenuItems/index.jsx";
+import MenuItem from "./Components/MenuItem/index.jsx";
 
 function App() {
   const [restaurantMenuItems, setRestaurantMenuItems] = useState([]);
@@ -43,7 +43,7 @@ function App() {
       });
     } else {
       return restaurantMenuItems?.map((foodItem, index) => {
-        return <MenuItems key={index} foodItem={foodItem} />;
+        return <MenuItem key={index} foodItem={foodItem} />;
       });
     }
   }
@@ -54,6 +54,17 @@ function App() {
         <p>
           <span className="text-cyan-500">Food</span>Delivery
         </p>
+        {currentId ? (
+          <button
+            onClick={() => {
+              setCurrentId(0), setRestaurantName("");
+            }}
+            className="text-blue-500 font-bold"
+          >
+            {" "}
+            &lt;&lt; Change Restaurant{" "}
+          </button>
+        ) : null}
       </header>
       <Hero text={restaurantName} />
       <section

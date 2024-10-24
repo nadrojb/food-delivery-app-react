@@ -10,7 +10,6 @@ function Hero({ text }) {
               <h1 className="text-cyan-500 text-5xl text-center">
                 Food. Delivered.
               </h1>
-
               <p className="text-center max-lg:pt-2 py-3">
                 Order your favourite food from local restaurants, right to your
                 door.
