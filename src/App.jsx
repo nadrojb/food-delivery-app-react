@@ -56,18 +56,6 @@ function App() {
     }
   }
 
-  function renderReturnButton() {
-    return currentId ? (
-      <button
-        onClick={() => setCurrentId(0)}
-        className="text-blue-500 font-bold"
-      >
-        {" "}
-        &lt;&lt; Change Restaurant
-      </button>
-    ) : null;
-  }
-
   function renderRestaurantName() {
     if (!currentId) {
       return <Hero currentId={currentId} heroText={"Food. Delivered."} />;
@@ -82,7 +70,7 @@ function App() {
         <p>
           <span className="text-cyan-500">Food</span>Delivery
         </p>
-        {renderReturnButton()}
+        {currentId ? (<button onClick={() => setCurrentId(0)} className="text-blue-500 font-bold">{" "} &lt;&lt; Change Restaurant </button>) : (null)}
       </header>
       {renderRestaurantName()}
       <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${currentId && 'xl:grid-cols-6'} gap-8`}>
