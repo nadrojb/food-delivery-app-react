@@ -7,7 +7,7 @@ function App() {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [currentId, setCurrentId] = useState(0);
   const [currentName, setCurrentName] = useState("");
-  
+
   useEffect(() => {
     if (!currentId) {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
@@ -70,10 +70,22 @@ function App() {
         <p>
           <span className="text-cyan-500">Food</span>Delivery
         </p>
-        {currentId ? (<button onClick={() => setCurrentId(0)} className="text-blue-500 font-bold">{" "} &lt;&lt; Change Restaurant </button>) : (null)}
+        {currentId ? (
+          <button
+            onClick={() => setCurrentId(0)}
+            className="text-blue-500 font-bold"
+          >
+            {" "}
+            &lt;&lt; Change Restaurant{" "}
+          </button>
+        ) : null}
       </header>
       {renderRestaurantName()}
-      <section className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${currentId && 'xl:grid-cols-6'} gap-8`}>
+      <section
+        className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${
+          currentId && "xl:grid-cols-6"
+        } gap-8`}
+      >
         {renderContent()}
       </section>
       <footer className="p-4 border-t-2 mt-4 mx-4">
