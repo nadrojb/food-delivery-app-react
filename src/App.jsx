@@ -7,7 +7,6 @@ import ReturnButton from "./Components/ReturnButton/index.jsx";
 function App() {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [currentId, setCurrentId] = useState(0);
-  const [currentName, setCurrentName] = useState("");
 
   useEffect(() => {
     if (!currentId) {
@@ -22,8 +21,8 @@ function App() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setRestaurantInfo(data.foodItems);
-          setCurrentName(data.restaurant);
+          console.log(data);
+          setRestaurantInfo(data);
         });
     }
   }, [currentId]);
@@ -39,16 +38,9 @@ function App() {
         />
       ));
     } else {
-      return restaurantInfo.map((foodItem, index) => (
-        <MenuItems
-          key={index}
-          foodName={foodItem.foodName}
-          foodType={foodItem.foodType}
-          calories={foodItem.calories}
-          side={foodItem.sideItem}
-          price={Number(foodItem.price).toFixed(2)}
-        />
-      ));
+      return restaurantInfo?.foodItems.map((foodItem, index) => {
+        return <MenuItems key={index} foodItem={foodItem} />;
+      });
     }
   }
 
@@ -57,7 +49,6 @@ function App() {
       <ReturnButton
         returnClickHandler={() => {
           setCurrentId(0);
-          setCurrentName("");
         }}
       />
     ) : null;
@@ -78,7 +69,7 @@ function App() {
         </p>
         {renderReturnButton()}
       </header>
-      <Hero text={currentName} />
+      <Hero text={restaurantInfo?.restaurant} />
 
       <section
         className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}
