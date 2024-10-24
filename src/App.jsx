@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import RestaurantButton from "./Components/RestaurantButton/index.jsx";
 import Hero from "./Components/Hero/index.jsx";
 import MenuItems from "./Components/MenuItems/index.jsx";
-import ReturnButton from "./Components/ReturnButton/index.jsx";
 
 function App() {
-  const [restaurantInfo, setRestaurantInfo] = useState([]);
+  const [restaurantMenuItems, setRestaurantMenuItems] = useState([]);
   const [currentId, setCurrentId] = useState(0);
+  const [restaurants, setRestaurants] = useState([]);
+  const [restaurantName, setRestaurantName] = useState("");
 
   useEffect(() => {
     if (!currentId) {
       fetch("https://food-delivery-api.dev.io-academy.uk/restaurants")
         .then((response) => response.json())
         .then((data) => {
-          setRestaurantInfo(data);
+          setRestaurants(data);
         });
     } else {
       fetch(
@@ -22,57 +23,45 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setRestaurantInfo(data);
+          setRestaurantMenuItems(data.foodItems);
+          setRestaurantName(data.restaurant);
         });
     }
   }, [currentId]);
 
   function renderContent() {
     if (!currentId) {
-      return restaurantInfo.map((restaurant) => (
-        <RestaurantButton
-          key={restaurant.id}
-          restaurantName={restaurant.name}
-          id={restaurant.id}
-          clickHandler={setCurrentId}
-        />
-      ));
+      return restaurants.map((restaurant) => {
+        return (
+          <RestaurantButton
+            key={restaurant.id}
+            restaurantName={restaurant.name}
+            setCurrentId={() => {
+              setCurrentId(restaurant.id);
+            }}
+          />
+        );
+      });
     } else {
-      return restaurantInfo?.foodItems.map((foodItem, index) => {
+      return restaurantMenuItems?.map((foodItem, index) => {
         return <MenuItems key={index} foodItem={foodItem} />;
       });
     }
-  }
-
-  function renderReturnButton() {
-    return currentId ? (
-      <ReturnButton
-        returnClickHandler={() => {
-          setCurrentId(0);
-        }}
-      />
-    ) : null;
-  }
-
-  let xlMediaCol;
-  if (!currentId) {
-    xlMediaCol = "";
-  } else {
-    xlMediaCol = "xl:grid-cols-6";
   }
 
   return (
     <>
       <header className="p-4 text-center shadow-lg md:flex md:justify-between">
         <p>
-          <span className="text-cyan-500">Food</span>Delivery <br />
+          <span className="text-cyan-500">Food</span>Delivery
         </p>
-        {renderReturnButton()}
       </header>
-      <Hero text={restaurantInfo?.restaurant} />
+      <Hero text={restaurantName} />
 
       <section
-        className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${xlMediaCol} gap-8`}
+        className={`mt-4 w-full px-4 grid items-start grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${
+          currentId && "xl:grid-cols-6"
+        } gap-8`}
       >
         {renderContent()}
       </section>
